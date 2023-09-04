@@ -41,3 +41,14 @@ npm run lint
 （1）git init
 （2）git add .
 （3）git commit -m "init"
+
+2. 配置@
+
+3. 按需导入 element-plus
+通用型组件 ElementPlus  --- Dialog模态框
+业务定制化组件（手写） --- 商品热榜组件
+
+4. 将项目需要的主题色覆盖elemnt-plus中的颜色  --- 定制主题色
+
+5. 配置axios
+基地址、超时时间、请求拦截器、响应拦截器
