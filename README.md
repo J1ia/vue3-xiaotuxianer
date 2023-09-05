@@ -61,3 +61,10 @@ npm run lint
 （2）通过vite.config.js配置自动导入文件
 
 8. 引入字体图标： font-class引用方式
+
+9. 获取数据，渲染一级导航
+
+10. 吸顶交互
+页面滚动>78px,出现固定导航
+
+利用vueuse插件，导入useScroll

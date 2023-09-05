@@ -9,6 +9,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+  div {
+    height: 800px;
+  }
 </style>
