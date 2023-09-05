@@ -68,3 +68,5 @@ npm run lint
 页面滚动>78px,出现固定导航
 
 利用vueuse插件，导入useScroll
+
+11. 采用pinia优化导航和吸顶交互的数据获取
