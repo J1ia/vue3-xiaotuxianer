@@ -1,6 +1,10 @@
 // axios基础封装
 import axios from 'axios'
 
+// 如果项目里面不同的业务模块需要的接口基地址不同，该如何做？
+// axios.create()方法可以执行多次，每次执行就会生成一个新的实例
+
+// 创建axios实例
 const httpInstance = axios.create({
   // 基地址
   baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
