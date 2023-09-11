@@ -106,3 +106,19 @@ npm run lint
 19. 将category的业务逻辑拆分成各个单独的业务逻辑
 useCategory.js
 useBanner.js
+
+20. 二级路由列表渲染
+(1) 获取列表数据
+
+* @data { 
+     categoryId: 1005000 ,
+     page: 1,
+     pageSize: 20,
+     sortField: 'publishTime' | 'orderNum' | 'evaluateNum'
+   } 
+ * @return {*}
+ */
+
+ (2) 根据data中sortField值，重新发送列表请求
+ (3) 列表无限加载功能实现
+ 使用elementPlus提供的v-infinite-scroll指令监听是否满足触底条件，满足加载条件时让页数参加加一获取下一页数据，做新老数据拼接渲染
