@@ -5,6 +5,7 @@ import layout from '@/views/Layout/index.vue'
 import login from '@/views/Login/index.vue'
 import home from '@/views/Home/index.vue'
 import category from '@/views/Category/index.vue'
+import subcategory from '@/views/SubCategory/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,6 +22,10 @@ const router = createRouter({
         {
           path:'category/:id',
           component: category
+        },
+        {
+          path:'category/sub/:id',
+          component: subcategory
         }
       ]
     },
