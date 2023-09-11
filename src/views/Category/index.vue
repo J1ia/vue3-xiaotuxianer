@@ -1,15 +1,32 @@
 <script setup>
 import {getCategoryAPI} from '@/apis/category.js'
+import {getBannerAPI} from '@/apis/home.js'
 import {onMounted, ref} from 'vue'
-import {useRoute} from 'vue-router'
+import {useRoute, onBeforeRouteUpdate} from 'vue-router'
+import GoodsItem from '../Home/GoodsItem.vue'
 
+// 面包屑
 const categoryData = ref({})
 const route = useRoute()
-const getCategory = async () => {
-  const res = await getCategoryAPI(route.params.id)
+const getCategory = async (id=route.params.id) => {
+  const res = await getCategoryAPI(id)
   categoryData.value = res.result
 }
 onMounted(() => getCategory())
+
+// 目标： 路由参数变化的时候，可以把分类数据接口重新发送
+onBeforeRouteUpdate((to) => {
+  getCategory(to.params.id)
+})
+// 轮播图
+const bannerList = ref([])
+const getBanner = async () => {
+  const res = await getBannerAPI()
+  bannerList.value = res.result
+}
+onMounted(() => {
+  getBanner()
+})
 </script>
 
 <template>
@@ -21,6 +38,35 @@ onMounted(() => getCategory())
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
           <el-breadcrumb-item>{{categoryData.name}}</el-breadcrumb-item>
         </el-breadcrumb>
+      </div>
+    </div>
+    <!-- 轮播图 -->
+    <div class="home-banner">
+      <el-carousel height="500px">
+        <el-carousel-item v-for="item in bannerList" :key="item.id">
+          <img :src="item.imgUrl">
+        </el-carousel-item>
+      </el-carousel>
+    </div>
+
+    <!-- 列表渲染 -->
+    <div class="sub-list">
+      <h3>全部分类</h3>
+      <ul>
+        <li v-for="i in categoryData.children" :key="i.id">
+          <RouterLink to="/">
+            <img :src="i.picture" />
+            <p>{{ i.name }}</p>
+          </RouterLink>
+        </li>
+      </ul>
+    </div>
+    <div class="ref-goods" v-for="item in categoryData.children" :key="item.id">
+      <div class="head">
+        <h3>- {{ item.name }}-</h3>
+      </div>
+      <div class="body">
+        <GoodsItem v-for="good in item.goods" :good="good" :key="good.id" />
       </div>
     </div>
   </div>
@@ -103,6 +149,15 @@ onMounted(() => getCategory())
 
   .bread-container {
     padding: 25px 0;
+  }
+}
+.home-banner {
+  width: 1240px;
+  height: 500px;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    height: 500px;
   }
 }
 </style>
