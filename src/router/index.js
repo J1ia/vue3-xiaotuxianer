@@ -6,6 +6,14 @@ import login from '@/views/Login/index.vue'
 import home from '@/views/Home/index.vue'
 import category from '@/views/Category/index.vue'
 import subcategory from '@/views/SubCategory/index.vue'
+import detail from '@/views/Deatils/indev.vue'
+import cartlist from '@/views/CartList/index.vue'
+import checkout from '@/views/Checkout/index.vue'
+import pay from '@/views/Pay/index.vue'
+import payback from '@/views/Payback/index.vue'
+import member from '@/views/Member/index.vue'
+import userInfo from '@/views/Member/component/UserInfo.vue'
+import userOrder from '@/views/Member/component/UserOrder.vue'
 
 
 const router = createRouter({
@@ -29,6 +37,40 @@ const router = createRouter({
           path:'category/sub/:id',
           component: subcategory
         },
+        {
+          path:'details/:id',
+          component:detail
+        },
+        {
+          path:'cartlist',
+          component:cartlist
+        },
+        {
+          path:'checkout',
+          component: checkout
+        },
+        {
+          path: 'pay',
+          component: pay
+        },
+        {
+          path:'payback',
+          component: payback
+        },
+        {
+          path:'member',
+          component: member, 
+          children: [
+            {
+              path: '',
+              component: userInfo
+            },
+            {
+              path: 'order',
+              component: userOrder
+            }
+          ]
+        }
         
       ]
     },
